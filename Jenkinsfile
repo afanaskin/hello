@@ -19,13 +19,13 @@ pipeline {
       sh 'mvn clean package'
        }
     }
-  }
 
-  stage ('Deploy-To-Tomcat') {
-    steps {
+    stage ('Deploy-To-Tomcat') {
+     steps {
       sshagent(['JenkinsKey']) {
         sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.235.134.93:/opt/tomcat/webapps/webapp.war'
         }      
       }       
     }
+  }
 }
